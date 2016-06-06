@@ -29,7 +29,7 @@
 
 
 global $allowedmacros;
-array_push($allowedmacros,"vmgetlistener","vmsetupchipmodel","vmchipmodelgetcount","vmsetupnumbertiles","vmnumbertilesgetcount","vmsetupitemsort","vmitemsortgetcontainers","vmsetupnumberlineaddition","vmnumberlineadditiongetvals","vmsetupnumberline","vmnumberlinegetvals","vmsetupnumberlineinterval","vmnumberlineintervalgetvals","vmsetupfractionline","vmgetfractionlinevals","vmsetupfractionmult","vmgetfractionmultvals","vmsetupfractioncompare","vmgetfractioncompareval");
+array_push($allowedmacros,"vmgetlistener","vmsetupchipmodel","vmchipmodelgetcount","vmsetupnumbertiles","vmsetupnumbertiles2","vmnumbertilesgetcount","vmsetupitemsort","vmitemsortgetcontainers","vmsetupnumberlineaddition","vmnumberlineadditiongetvals","vmsetupnumberline","vmnumberlinegetvals","vmsetupnumberlineinterval","vmnumberlineintervalgetvals","vmsetupfractionline","vmgetfractionlinevals","vmsetupfractionmult","vmgetfractionmultvals","vmsetupfractioncompare","vmgetfractioncompareval");
 
 //vmgetlistener(qn,[part])
 //Generates a listener to receive values from virtual manipulatives.
@@ -99,6 +99,16 @@ function vmsetupnumbertiles($state,$qn,$part=null) {
 	return $out;
 }
 
+//vmsetupnumbertiles(stuans,qn,[part])
+//Set up a number tiles manipulative.
+//Version 2 of Number Tiles allows clicking to add and remove instead of dragging.
+//Save concept with a different approach
+function vmsetupnumbertiles2($state,$qn,$part=null) {
+	if ($part !== null) {$qn = 1000*($qn)+$part;} else {$qn--;}
+    $initValue = $state;
+	$out = '<iframe src="https://s3-us-west-2.amazonaws.com/oervm/NumberTiles2/numbertilesv2.html?qn='.$qn.'&inVal='.$initValue.'" width="610" height="530" frameborder="0"></iframe>';
+	return $out;
+}
 //vmnumbertilesgetcount(stuans) 
 //return an array array(hundredcount,tencount,onecount) of the count of 
 //hundred blocks, ten blocks, and ones blocks in the drop area
